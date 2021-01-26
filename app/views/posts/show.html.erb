@@ -1,0 +1,28 @@
+<h1>Posts<h1>
+
+<h4>
+    <%= @post.title %>
+</h4>
+
+<p>
+    Submited <%= time_ago_in_words(@post.created_at)%>
+</p>
+
+<p>
+    <%=@post.body%>
+</p>
+
+<%if user_signed_in?%>
+    <button class="button"><%= link_to  "Edit post", edit_post_path %></button>
+
+    <button class="button">
+        <%= link_to "Delete post", post_path(@post), method: :delete, data: { confirm: "Are you sure?" } %>
+    </button>
+<%end%>
+
+<h4><%= @post.comments.count %> comments</h4>
+
+<%= render @post.comments %>
+
+<h4>Join Discussion</h4>
+<%= render "comments/form"%>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Tumblr</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+
+  <div id= "sidebar">
+    <ul>
+      <li><%= link_to  "Tumblr", root_path %></li>
+      <li><%= link_to  "Posts", root_path %></li>
+      <li><%= link_to  "About", about_path %></li>
+      <% if !user_signed_in? %>
+  		   <li><%= link_to "User Login", new_user_session_path %></li>
+         <li><%= link_to "Register", new_user_registration_path %></li>
+      <% end %>
+    </ul>
+  </div>
+
+  <div id= "header">
+    <%if user_signed_in?%>
+      <button class="button"><%= link_to  "Make post", new_post_path %></button>
+      <button class="button"><%= link_to  "Log out", destroy_user_session_path, method: :delete %></button>
+    <%end%>
+  </div>
+
+  		<% flash.each do |name, msg| %>
+  		    <%= content_tag(:div, msg, class: "alert") %>
+  		<% end %>
+
+    <%= yield %>
+  </body>
+</html>

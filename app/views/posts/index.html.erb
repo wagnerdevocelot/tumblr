@@ -1,0 +1,8 @@
+<h1>Welcome hell, I mean Home</h1>
+
+
+<% @posts.each do |post| %>
+    <h4><%= link_to post.title, post %></h4>
+    <p><%= time_ago_in_words(post.created_at) %> ago</p>
+    <p><%= truncate(post.body, lenght:100) %></p>
+<% end %>

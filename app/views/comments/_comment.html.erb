@@ -1,0 +1,11 @@
+<p><%=comment.name %></p>
+
+<p><%=comment.body%></p>
+
+<p>Submited <%= time_ago_in_words(comment.created_at)%> Ago</p>
+
+<%if user_signed_in?%>
+    <button class="button">
+        <%= link_to "Delete comment", [comment.post, comment], method: :delete, data: { confirm: "Are you sure?" } %>
+    </button>
+<%end%>
